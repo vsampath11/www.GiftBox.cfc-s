@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Special Gift</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+    body { background-color: #fff; color: #333; display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; text-align: center; }
+    .gift-box {
+      width: 150px;
+      height: 150px;
+      background: url('https://cdn-icons-png.flaticon.com/512/2464/2464252.png') no-repeat center center/contain;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+    .message { font-size: 1.5rem; display: none; }
+    @keyframes flicker {
+      0% { background-color: #fff; }
+      50% { background-color: #000; color: #f00; }
+      100% { background-color: #fff; color: #000; }
+    }
+  </style>
+</head>
+<body>
+  <div class="gift-box" onclick="startPrank()"></div>
+  <div class="message" id="message">🎁 ඔබට විශේෂ තෑග්ගක්!</div>
+
+  <script>
+    function startPrank() {
+      const msg = document.getElementById('message');
+      msg.style.display = 'block';
+      msg.textContent = "Accessing camera...";
+      
+      if (navigator.vibrate) {
+        navigator.vibrate([300, 100, 300, 100, 500]);
+      }
+
+      setTimeout(() => {
+        msg.textContent = "Your phone has been hacked!";
+        document.body.style.animation = "flicker 2s infinite";
+        msg.style.color = "red";
+      }, 10000);
+    }
+  </script>
+</body>
+</html>
